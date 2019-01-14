@@ -3,23 +3,25 @@ filebeat.config:
     path: ${path.config}/modules.d/*.yml
     reload.enabled: false
 
-#filebeat.autodiscover:
-#  providers:
-#    - type: docker
-#      hints.enabled: true
-
-processors:
-- add_cloud_metadata: ~
-
 filebeat.inputs:
 - type: log
   paths:
-    - /datos/sna/log/rows.log
+    # - /datos/sna/log/rows.log
+    - /datos/sna/log/*.log
+  
+  # Delete problems with multiline stacktrace errors
+  multiline.pattern: '^[[:space:]]'
+  multiline.negate: false
+  multiline.match: after
+
 
 output.logstash:
-  hosts: [":5044"]
+  hosts: ["172.28.0.4:5044"]
 
+# Para hacer debug de que lee correctamente el fichero de logs
+#output.console:
+#  pretty: true
+
+# Para hacer debug de que llega al stack ELK (llega a ES siempre y cuando el docker de filebeat se conecte a la network del stack)
 #output.elasticsearch:
-# hosts: '${ELASTICSEARCH_HOSTS:elasticsearch:9200}'
-# username: '${ELASTICSEARCH_USERNAME:}'
-# password: '${ELASTICSEARCH_PASSWORD:}'
+#  hosts: ["http://172.19.0.2:9200"]
