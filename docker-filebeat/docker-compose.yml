@@ -10,5 +10,6 @@ services:
         - /datos/sna/log/:/datos/sna/log/    
 
 networks:
-  elk:
-    driver: bridge
+  default:
+    external:
+      name: dockerelk_elk

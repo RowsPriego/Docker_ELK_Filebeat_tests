@@ -8,16 +8,16 @@ filebeat.inputs:
   paths:
     # - /datos/sna/log/rows.log
     - /datos/sna/log/*.log
+   
   
   # Delete problems with multiline stacktrace errors
   multiline.pattern: '^[[:space:]]'
   multiline.negate: false
   multiline.match: after
 
-
 output.logstash:
-  hosts: ["172.28.0.4:5044"]
-
+  hosts: ["172.21.0.3:5044"]
+  
 # Para hacer debug de que lee correctamente el fichero de logs
 #output.console:
 #  pretty: true
