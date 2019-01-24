@@ -9,7 +9,7 @@ services:
         - /var/lib/docker/containers:/var/lib/docker/containers:ro
         - /datos/sna/log/:/datos/sna/log/    
 
-networks:
-  default:
-    external:
-      name: dockerelk_elk
+#networks:
+ # default:
+  #  external:
+   #   name: dockerelk_elk

@@ -16,7 +16,7 @@ filebeat.inputs:
   multiline.match: after
 
 output.logstash:
-  hosts: ["172.21.0.3:5044"]
+  hosts: ["192.168.7.55:5044"]
   
 # Para hacer debug de que lee correctamente el fichero de logs
 #output.console:
@@ -24,4 +24,4 @@ output.logstash:
 
 # Para hacer debug de que llega al stack ELK (llega a ES siempre y cuando el docker de filebeat se conecte a la network del stack)
 #output.elasticsearch:
-#  hosts: ["http://172.19.0.2:9200"]
+#  hosts: ["http://192.168.7.55:9200"]
