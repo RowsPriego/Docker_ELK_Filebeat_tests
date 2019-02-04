@@ -1,0 +1,14 @@
+metricbeat.modules:
+- module: system
+  metricsets: ["cpu", "load", "filesystem", "fsstat", "memory", "network", "process", "core", "diskio", "socket"]
+  period: 10s
+  processes: ['.*']
+  cpu.metrics:  ["percentages"]
+  core.metrics: ["percentages"]
+
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["172.20.0.2:9200"]
+
+setup.kibana:
+  host: "172.20.0.3:5601"
