@@ -1,0 +1,19 @@
+heartbeat.monitors:
+- type: http
+  schedule: '@every 20s'
+  urls: ["http://192.168.3.39:27017/"]
+  name: "MongoDB"
+
+- type: http
+  schedule: '@every 20s'
+  urls: ["http://idipruebas.treelogic.local:4444/grid/console"]
+  name: "Selenium Grid Console"
+
+processors:
+- add_cloud_metadata: ~
+
+output.elasticsearch:
+  hosts: "192.168.7.55:9200"
+
+setup.dashboards.enabled: true
+setup.kibana.host: "http://192.168.7.55:5601"

@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+
+  metricbeat:    
+    image: docker.elastic.co/beats/heartbeat:6.5.3
+    volumes:
+      - ./heartbeat.docker.yml:/usr/share/heartbeat/heartbeat.yml:ro
+
+# COmentar si no se utiliza en local
+#networks:
+#  default:
+#    external:
+#      name: dockerelk_elk
