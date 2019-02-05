@@ -6,9 +6,22 @@ metricbeat.modules:
   cpu.metrics:  ["percentages"]
   core.metrics: ["percentages"]
 
+- module: docker
+  metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "image", "memory", "network"]
+  period: 10s
+  hosts: ["unix:///var/run/docker.sock"]
+  enabled: true
+
+#============================== Dashboards =====================================
+# These settings control loading the sample dashboards to the Kibana index. Loading
+# the dashboards is disabled by default and can be enabled either by setting the
+# options here, or by using the `-setup` CLI flag or the `setup` command.
+setup.dashboards.enabled: true
+#============================== Kibana =====================================
+# Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
+# This requires a Kibana endpoint configuration.
+setup.kibana.host: "172.19.0.3:5601"
+
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["172.20.0.2:9200"]
-
-setup.kibana:
-  host: "172.20.0.3:5601"
+  hosts: ["172.19.0.2:9200"]
